@@ -1,0 +1,33 @@
+Creating backend for zomato:
+
+Logic and connectivity to db will be done inside this, as it will work for large scale users it must use kafka to provide support, also need to build an app for this as a developer.
+
+
+API Request
+|
+route
+|
+controller
+|
+service-- perform Logic
+|
+Maintain logs
+|
+Update/save to db
+
+
+Main routes to be maintained:
+
+1) GET :
+//food: based on value
+
+2) GET :
+//restaurant
+
+3)GET:
+//menu
+
+4)POST:
+//user details
+
+5)Search query based on: food, restaurant, other stuff...
