@@ -15,3 +15,8 @@ Created a system design diagram of what to have in the application:
 4) API routes: GET // food:based on value, //restaurants, //menu     POST: //user details
 5) HLD: 
 6) LLD:
+
+
+Created a pull request: Added few basic text files with the approach.
+
+To be added: Bot to reply automatically to the request, authorize and assign only me to solve the issue, bot files to be hidden.
