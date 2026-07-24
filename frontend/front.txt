@@ -1,0 +1,6 @@
+Frontend building:
+
+We need to create a UI for website as well as app here to make it more scalable.
+We will be sending requests to get information needed to show.
+
+Various pages need to be built.

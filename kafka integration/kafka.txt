@@ -1,0 +1,6 @@
+as we are building scalable large application sending multiple api request having synchronous architecture will create unnecessary  traffic, to solve this problem we use kakfa as message queue holder for our system, each request received at kafka will be getting some response and all the events associated with it will come to it to do their functionality.
+
+Producer: user
+
+Consumer: Services(delivery, restaurant, analytics, etc)
+
