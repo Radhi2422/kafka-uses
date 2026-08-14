@@ -3,7 +3,7 @@ const authService = require("../services/authService");
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log("email", email);
+    
     // Validate request
     if (!email || !password) {
       return res.status(400).json({
@@ -19,6 +19,7 @@ const login = async (req, res) => {
       success: true,
       message: "Login successful",
       token: data.token,
+      employeeId: data.employee.employeeId,
       employee: data.employee,
     });
   } catch (error) {

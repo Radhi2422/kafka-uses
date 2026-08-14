@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FiMail, FiLock } from "react-icons/fi";
-
+import { setEmployeeId } from "../../redux/auth/authSlice";
 import "./Login.css";
-
-import { setEmployee } from "../../redux/employee/employeeSlice";
 import { loginUser } from "../../services/authService";
 
 function Login() {
@@ -33,11 +31,10 @@ function Login() {
 
     try {
       const data = await loginUser(form);
-
       localStorage.setItem("token", data.token);
-
-      dispatch(setEmployee(data.employee));
-
+      dispatch(setEmployeeId({
+        employeeId: data.data.employeeId,
+      }));
       navigate("/dashboard");
     } catch (error) {
       alert(error.response?.data?.message || "Login Failed");

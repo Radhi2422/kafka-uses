@@ -10,15 +10,18 @@ const loginEmployee = async (email, password) => {
     throw new Error("Not company access mail");
 }
   // Find employee by email
+  
+  // const employee1 = await Employee.find({});
+  // const bcrypt = require("bcrypt");
   const employee = await Employee.findOne({
     email: email.toLowerCase(),
     isActive: true,
   });
-
   if (!employee) {
     throw new Error("User not registered or inactive");
   }
 
+  // console.log("employee", await bcrypt.hash(password, 10), employee.password);
   // Compare password
   const isPasswordValid = await bcrypt.compare(
     password,
