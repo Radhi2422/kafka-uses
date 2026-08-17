@@ -1,20 +1,34 @@
 import { useState } from "react";
-import {
-  FaUserCircle,
-  FaChevronDown,
-  FaCalendarAlt,
-  FaCheckCircle,
-  FaHourglassHalf,
-  FaTimesCircle,
-  FaBuilding,
-} from "react-icons/fa";
+import axios from "axios";
+import { FaUserCircle, FaChevronDown, FaCalendarAlt, FaCheckCircle, FaHourglassHalf, FaTimesCircle, FaBuilding, FaPlus } from "react-icons/fa";
+import {useNavigate} from "react-router-dom";
 import useEmployee from "../../hooks/useEmployee";
 import "./UserDashboard.css";
+import { logFrontendError } from "../../utils/errorLogger";
 
 function Dashboard() {
   const { employee, employeeId } = useEmployee();
-  console.log("Employee Data:", employee, "Employee ID:", employeeId);
+  const navigate=useNavigate();
+  
   //function to get required details for employee
+  //we have employeeID, need to send that and make a search in table for employee and send all data as of now.
+  const getEmployeeDetailsBasedOnID = async ()=>{
+    try{
+      const VITE_BASE_URL=import.meta.env.VITE_BASE_URL
+      const token = localStorage.getItem("token");
+      console.log("Reached here")
+      const res = await axios.get(`${VITE_BASE_URL}/products`,
+        {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+        });
+    }catch(err){      
+      logFrontendError(err, { component: "EmployeeDetails", method: "fetchEmployeeDetails" });
+    }
+  }
+
+
   //function 2 to get leaves data for current employee
   const [open, setOpen] = useState(false);
   return (
@@ -64,7 +78,7 @@ function Dashboard() {
 
         <div className="welcome-overlay">
 
-            <h2>Welcome Back, {employee?.name}</h2>
+            <h2>Welcome Back, {employeeId}</h2>
 
             <blockquote>
                 “Taking time to rest is not stepping away from success—it is preparing yourself to achieve it with renewed energy, creativity, and purpose.”
@@ -109,8 +123,12 @@ function Dashboard() {
         </div>
 
       </section>
- {/* Leave Summary */}
+      {/* Leave Summary */}
+        {/* Request Leave     */}
+          {/* <section>
+            <h6>Request Leave</h6>
 
+          </section> */}
       <section className="leave-section">
 
         <h2>Leave Summary</h2>
@@ -154,6 +172,14 @@ function Dashboard() {
             <h3>1</h3>
 
             <p>Rejected</p>
+
+          </div>
+          <div className="card leave-request" onClick={()=>navigate("/leave/validate")} 
+            style={{cursor:"pointer"}}>
+            
+            <FaPlus />
+
+            <p>New Leave Request</p>
 
           </div>
 

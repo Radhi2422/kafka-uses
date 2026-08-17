@@ -35,6 +35,7 @@ function Login() {
       dispatch(setEmployeeId({
         employeeId: data.data.employeeId,
       }));
+      console.log(data.data.employeeId)
       navigate("/dashboard");
     } catch (error) {
       alert(error.response?.data?.message || "Login Failed");

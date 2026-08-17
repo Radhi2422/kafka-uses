@@ -187,6 +187,9 @@ p, span, li, a, button, input {
   color: red;
 }
 
+.leave-request svg {
+  color: rgb(0, 0, 255);
+}
 /* Employee Info */
 
 .employee-info {
